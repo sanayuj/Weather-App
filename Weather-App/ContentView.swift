@@ -32,7 +32,7 @@ struct ContentView: View {
                 Button{
                     print("Clicked")
                 }label:{
-                    Text("Change Day Time").font(.system(size: 20,weight: .bold)).foregroundColor(.white)
+                    Text("Change Day Time").font(.system(size: 20,weight: .bold)).foregroundColor(.blue).frame(width: 350,height: 50).background(Color("lightBlue")).cornerRadius(10)
                 }
                 
                
