@@ -10,12 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [Color.blue, Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
+            BackgroundView(primaryColor: .blue, secondaryColor: Color("lightBlue"))
             VStack{
-                Text("Malappuram,Kerala").font(.system(size:32,weight: .medium)).foregroundColor(.white)
-                    .padding()
-                Image(systemName: "cloud.sun.fill").renderingMode(.original).resizable().aspectRatio(contentMode: .fit).frame(width:180,height: 180)
                 
+                CityName(cityName: "Malappuram,Kerala")
                 Text("28°C").font(.system(size: 70 ,weight: .medium)).foregroundColor(.white)
                 
                 HStack{
@@ -47,9 +45,12 @@ struct ContentView: View {
 }
 
 struct WhetherDayView: View {
+    
     var weekName:String
     var temperture:Int
     var imageName:String
+    
+//Week Name
     
     var body: some View {
         VStack{
@@ -58,5 +59,39 @@ struct WhetherDayView: View {
             Text(" \(temperture)°C").font(.system(size: 19,weight: .medium)).foregroundColor(.white)
             
         }.padding(.leading,15)
+    }
+}
+
+//Mode
+
+struct BackgroundView:View {
+    
+    var primaryColor:Color
+    var secondaryColor:Color
+    
+    var body: some View {
+        LinearGradient(gradient: Gradient(colors: [primaryColor, secondaryColor]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
+    }
+}
+
+
+//City Name
+
+struct CityName:View {
+    var cityName:String
+    var body: some View {
+        Text(cityName).font(.system(size:32,weight: .medium)).foregroundColor(.white)
+            .padding()
+        Image(systemName: "cloud.sun.fill").renderingMode(.original).resizable().aspectRatio(contentMode: .fit).frame(width:180,height: 180)
+    }
+}
+
+
+//Main Temperture
+
+struct MainCityTemperture:View {
+    var 
+    var body: some View {
+       
     }
 }
