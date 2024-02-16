@@ -14,6 +14,7 @@ struct ContentView: View {
             VStack{
                 
                 CityName(cityName: "Malappuram,Kerala")
+                
                 MainCityTemperture(TempImage:"cloud.sun.fill", TempCount: 28)
                
                 
@@ -31,7 +32,7 @@ struct ContentView: View {
                 Button{
                     print("Clicked")
                 }label:{
-                    Text("Change Day Time").font(.system(size: 20,weight: .bold)).foregroundColor(.blue).frame(width: 350,height: 50).background(Color("lightBlue")).cornerRadius(10)
+                    BtnLabel(btnText: "Change Day Time", textColor: .blue, backgroundColor: .white)
                 }
                 
                
@@ -45,13 +46,16 @@ struct ContentView: View {
     ContentView()
 }
 
+
+
+
+//Week Name
+
 struct WhetherDayView: View {
     
     var weekName:String
     var temperture:Int
     var imageName:String
-    
-//Week Name
     
     var body: some View {
         VStack{
@@ -97,5 +101,17 @@ struct MainCityTemperture:View {
         Image( systemName:TempImage).renderingMode(.original).resizable().aspectRatio(contentMode: .fit).frame(width:180,height: 180)
         Text("\(TempCount)°C").font(.system(size: 70 ,weight: .medium)).foregroundColor(.white)
        
+    }
+}
+
+//Btn Label
+
+struct BtnLabel:View {
+    var btnText:String
+    var textColor:Color
+    var backgroundColor:Color
+    
+    var body: some View {
+        Text(btnText).font(.system(size: 20,weight: .bold)).foregroundColor(textColor).frame(width: 350,height: 50).background(Color(backgroundColor)).cornerRadius(10)
     }
 }
