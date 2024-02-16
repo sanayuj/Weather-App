@@ -14,7 +14,8 @@ struct ContentView: View {
             VStack{
                 
                 CityName(cityName: "Malappuram,Kerala")
-                Text("28°C").font(.system(size: 70 ,weight: .medium)).foregroundColor(.white)
+                MainCityTemperture(TempImage:"cloud.sun.fill", TempCount: 28)
+               
                 
                 HStack{
                     WhetherDayView(weekName:"Mon",temperture:23,imageName:"cloud.sun.fill")
@@ -82,7 +83,7 @@ struct CityName:View {
     var body: some View {
         Text(cityName).font(.system(size:32,weight: .medium)).foregroundColor(.white)
             .padding()
-        Image(systemName: "cloud.sun.fill").renderingMode(.original).resizable().aspectRatio(contentMode: .fit).frame(width:180,height: 180)
+       
     }
 }
 
@@ -90,8 +91,11 @@ struct CityName:View {
 //Main Temperture
 
 struct MainCityTemperture:View {
-    var 
+    var TempImage:String
+    var TempCount:Int
     var body: some View {
+        Image( systemName:TempImage).renderingMode(.original).resizable().aspectRatio(contentMode: .fit).frame(width:180,height: 180)
+        Text("\(TempCount)°C").font(.system(size: 70 ,weight: .medium)).foregroundColor(.white)
        
     }
 }
