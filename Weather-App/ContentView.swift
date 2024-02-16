@@ -13,12 +13,12 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            BackgroundView(primaryColor: isNight ? .black : .blue , secondaryColor: isNight ? .gray: Color("lightBlue"))
+            BackgroundView(isNight: $isNight)
             VStack{
                 
                 CityName(cityName: "Malappuram,Kerala")
                 
-                MainCityTemperture(TempImage:"cloud.sun.fill", TempCount: 28)
+                MainCityTemperture(TempImage: isNight ? "cloud.moon.fill":"cloud.sun.fill", TempCount: isNight ? 25:28)
                
                 
                 HStack{
@@ -74,11 +74,10 @@ struct WhetherDayView: View {
 
 struct BackgroundView:View {
     
-    var primaryColor:Color
-    var secondaryColor:Color
+    @Binding var isNight:Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [primaryColor, secondaryColor]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black:.blue, isNight ? .gray : Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
     }
 }
 
