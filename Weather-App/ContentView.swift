@@ -11,6 +11,24 @@ struct ContentView: View {
     
     @State private var isNight=false
     
+    @State private var weatherData [WeatherDay] = []
+      let networkManager = NetworkManager()
+    
+    struct WeatherDay {
+        var weekName: String
+        var temperature: Int
+        var imageName: String
+    }
+
+    let weatherData: [WeatherDay] = [
+        WeatherDay(weekName: "Mon", temperature: 23, imageName: "cloud.sun.fill"),
+        WeatherDay(weekName: "Tue", temperature: 32, imageName: "cloud.rain.fill"),
+        WeatherDay(weekName: "Wed", temperature: 23, imageName: "wind"),
+        WeatherDay(weekName: "Thu", temperature: 23, imageName: "cloud.sun.fill"),
+        WeatherDay(weekName: "Fri", temperature: 23, imageName: "cloud.sun.bolt.fill")
+    ]
+
+    
     var body: some View {
         ZStack{
             BackgroundView(isNight: $isNight)
@@ -21,15 +39,10 @@ struct ContentView: View {
                 MainCityTemperture(TempImage: isNight ? "cloud.moon.fill":"cloud.sun.fill", TempCount: isNight ? 25:28)
                
                 
-                HStack{
-                    WhetherDayView(weekName:"Mon",temperture:23,imageName:"cloud.sun.fill")
-                    WhetherDayView(weekName:"Tue",temperture:32,imageName:"cloud.rain.fill")
-                    WhetherDayView(weekName:"Wed",temperture:23,imageName:"wind")
-                    WhetherDayView(weekName:"Thu",temperture:23,imageName:"cloud.sun.fill")
-                    WhetherDayView(weekName:"Fri",temperture:23,imageName:"cloud.sun.bolt.fill")
-                
-               
-                 
+                HStack {
+                    ForEach(weatherData, id: \.weekName) { day in
+                        WhetherDayView(weekName: day.weekName, temperture: day.temperature, imageName: day.imageName)
+                    }
                 }.padding(.top,30)
                 Spacer()
                 Button{
@@ -38,9 +51,6 @@ struct ContentView: View {
                     BtnLabel(btnText: "Change Day Time", textColor: .blue, backgroundColor: .white)
                 }
                 
-               
-                
-               
             }}
     }
 }
